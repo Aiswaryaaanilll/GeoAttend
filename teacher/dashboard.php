@@ -233,21 +233,32 @@ include __DIR__ . '/../includes/header.php';
 
         <?php if ($isActive): ?>
           <div class="actions">
-            <form method="post"
-                  action="<?= e(APP_URL) ?>/teacher/close_session.php"
-                  data-confirm="Close this attendance session now?">
-              <input type="hidden" name="csrf" value="<?= e($csrf) ?>" />
-              <input type="hidden" name="session_id"
-                     value="<?= (int) $s['session_id'] ?>" />
-              <button type="submit" class="btn btn-ghost">Close now</button>
-            </form>
+           
           </div>
+          <?php if ($isActive): ?>
+    <div class="actions">
+        <form class="ga-close-form"
+              method="post"
+              action="<?= e(APP_URL) ?>/teacher/close_session.php">
+
+            <input type="hidden" name="csrf" value="<?= e($csrf) ?>" />
+
+            <input type="hidden"
+                   name="session_id"
+                   value="<?= (int)$s['session_id'] ?>">
+
+            <button type="submit" class="btn btn-ghost">
+                Close now
+            </button>
+
+        </form>
+    </div>
+<?php endif; ?>
         <?php endif; ?>
       </article>
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
 
-<script src="<?= e(APP_URL) ?>/assets/js/teacher_session.js"></script>
-
+<script src="<?= e(APP_URL) ?>/assets/js/teacher_session.js" defer></script>
 <?php include __DIR__ . '/../includes/footer.php'; ?>
